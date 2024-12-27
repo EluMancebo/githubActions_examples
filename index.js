@@ -1,6 +1,7 @@
+require("dotenv").config();
+
 const TelegramBot = require("node-telegram-bot-api");
 
-// Obtener las variables de entorno
 const token = process.env.TELEGRAM_TOKEN;
 const chatId = process.env.TELEGRAM_ID_USER;
 
@@ -8,7 +9,7 @@ if (!token || !chatId) {
   console.error(
     "Error: TELEGRAM_TOKEN o TELEGRAM_ID_USER no están configurados."
   );
-  process.exit(1); // Salir con error si faltan las variables
+  process.exit(1);
 }
 
 const bot = new TelegramBot(token);
