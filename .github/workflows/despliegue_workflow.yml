@@ -1,0 +1,46 @@
+name: despliegue_workflow
+
+on:
+  push:
+    branches:
+      - react_app_deploy
+
+jobs:
+  build-job:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Checkout del código
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Instalar dependencias y construir la app
+      - name: Install & Build
+        run: |
+          npm install
+          npm run build
+
+      # 3. Subir el artefacto (carpeta 'build')
+      - name: Upload
+        uses: actions/upload-artifact@v3
+        with:
+          name: react-project
+          path: build/
+
+  deploy-job:
+    needs: build-job
+    runs-on: ubuntu-latest
+    steps:
+      # 4. Descargar el artefacto
+      - name: Get Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: react-project
+
+      # 5. Desplegar en Surge.sh
+      - name: Deploy on Surge.sh
+        uses: dswistowski/surge-sh-action@v1.1.0
+        with:
+          domain: 'react-app-EluM.surge.sh' # Cambia si usas otro dominio
+          project: "./build" # Ruta del proyecto
+          login: ${{ secrets.SURGE_LOGIN }}
+          token: ${{ secrets.SURGE_TOKEN }}

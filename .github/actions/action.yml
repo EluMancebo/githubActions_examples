@@ -1,0 +1,15 @@
+name: telegram-action
+description: "Envia un mensaje de confirmación del workflow al usuario a través de telegram"
+inputs:
+  telegram_token:
+    description: "Token de autenticación del bot de Telegram"
+    required: true
+  telegram_id_user:
+    description:"ID del usuario o chat de Telegram al que se enviará el mensaje" 
+    required: true 
+outputs:
+  msg:
+     description: "Mensaje de respuesta de la Api de Telegram"
+runs:
+  using: "node20"
+  main: "../../dist/index.js"
