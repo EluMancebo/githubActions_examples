@@ -1,0 +1,2 @@
+(this["webpackJsonpreact-app-temp"]=this["webpackJsonpreact-app-temp"]||[]).push([[0],[,,,function(e,t,n){e.exports=n(4)},function(e,t,n){"use strict";n.r(t);var a=n(0),p=n.n(a),r=n(2);const c=()=>p.a.createElement("h1",null,"Hello World");n.n(r).a.render(p.a.createElement(c,null),document.getElementById("root"))}],[[3,1,2]]]);
+//# sourceMappingURL=main.5d486c2b.chunk.js.map
